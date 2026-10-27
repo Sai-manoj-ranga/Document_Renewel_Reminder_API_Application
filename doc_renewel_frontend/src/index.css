@@ -1,0 +1,47 @@
+
+/* Apply consistent sizing to all elements */
+* {
+  box-sizing: border-box;
+}
+
+/* Basic page appearance */
+body {
+  margin: 0;
+  min-width: 320px;
+  background-color: #f5f7fb;
+  color: #212529;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Main React root */
+#root {
+  min-height: 100vh;
+}
+
+/* Form controls */
+.form-control,
+.form-select {
+  border-radius: 7px;
+}
+
+/* Buttons */
+.btn {
+  border-radius: 7px;
+}
+
+/* Dashboard cards */
+.card {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+/* Tables */
+.table th {
+  white-space: nowrap;
+}
+
+/* Status badges */
+.badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
