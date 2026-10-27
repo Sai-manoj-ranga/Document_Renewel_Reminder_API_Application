@@ -1,109 +1,124 @@
 <div align="center">
 
-<img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java" />
-<img src="https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white" alt="Spring Boot" />
-<img src="https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white" alt="Maven" />
-<img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" />
-<img src="https://img.shields.io/badge/Spring_Boot_DevTools-6DB33F?style=for-the-badge&logo=spring&logoColor=white" alt="Spring Boot DevTools" />
-<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React JS" />
-<img src="https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white" alt="Bootstrap" />
-<img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white" alt="Postman" />
-
 # 📄 Document Renewal Reminder
 
-**Never miss an expiry date again.** A full-stack application to track passports, licenses, insurance policies and certificates, and see at a glance what is valid, due for renewal, or already expired.
+**Never miss an expiry date again.** A full-stack app to track passports, licenses, insurance policies and certificates, and see at a glance what is valid, due for renewal, or already expired.
+
+![Java](https://img.shields.io/badge/Java-25-ED8B00?logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-4.1.1-6DB33F?logo=springboot&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=white)
+![React](https://img.shields.io/badge/React-19-20232A?logo=react&logoColor=61DAFB)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?logo=bootstrap&logoColor=white)
+![Postman](https://img.shields.io/badge/Postman-API_Testing-FF6C37?logo=postman&logoColor=white)
 
 </div>
 
 ---
 
-## 📑 Table of Contents
+## Table of Contents
 
-- [About the Project](#-about-the-project)
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Architecture](#-architecture)
-- [Project Structure](#-project-structure)
-- [Getting Started](#-getting-started)
-- [Data Model](#-data-model)
-- [API Reference](#-api-reference)
-- [Testing with Postman](#-testing-with-postman)
-- [Validation Rules](#-validation-rules)
-- [Author](#-author)
-
----
-
-## 📌 About the Project
-
-Important documents expire quietly, and renewing them late can be costly or stressful. **Document Renewal Reminder** lets you store each document with its issue and expiry dates, set how many days in advance you want to be warned, and instantly see its status.
-
-The project is split into two parts:
-
-- **Backend:** a RESTful API built with Spring Boot and MySQL
-- **Frontend:** a React JS client styled with Bootstrap
+- [About the Project](#about-the-project)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Architecture](#architecture)
+- [Project Structure](#project-structure)
+- [Prerequisites](#prerequisites)
+- [Installation and Setup](#installation-and-setup)
+- [Configuration](#configuration)
+- [Data Model](#data-model)
+- [API Documentation](#api-documentation)
+- [Usage Guide](#usage-guide)
+- [Future Improvements](#future-improvements)
+- [Contributing](#contributing)
+- [Author and Contact](#author-and-contact)
 
 ---
 
-## ✨ Features
+## About the Project
 
-- ➕ Create, view, update and delete document records (full CRUD)
-- ⏳ Automatic **days remaining** calculation for every document
-- 🚦 Smart **expiry status** for each document:
+Important documents expire quietly, and renewing them late can be costly or stressful. **Document Renewal Reminder** lets you store each document with its issue and expiry dates, choose how many days in advance you want to be warned, and instantly see its status.
 
-  | Status | Meaning |
-  |---|---|
-  | 🟢 `VALID` | Expiry is further away than the reminder window |
-  | 🟡 `RENEWAL_SOON` | Expiry is within `reminderDaysBefore` days |
-  | 🔴 `EXPIRED` | Expiry date is today or already past |
-  | 🔵 `RENEWED` | Document has been marked as renewed |
+The repository has two parts:
 
-- 📅 Documents sorted by **soonest expiry first**
-- ⚙️ Custom reminder window per document (default **30 days**)
-- ✅ Server-side validation with clear error messages
-- 🌐 CORS pre-configured for the React app on `http://localhost:3000`
+| Folder | Description |
+|---|---|
+| [`document_renewel_reminder/`](document_renewel_reminder) | Backend REST API (Spring Boot + MySQL) |
+| [`doc_renewel_frontend/`](doc_renewel_frontend) | Frontend web app (React + Bootstrap) |
 
 ---
 
-## 🛠 Tech Stack
+## Features
+
+**Backend**
+
+- Full CRUD for document records
+- Documents returned sorted by soonest expiry first
+- Computed `daysRemaining` and `expiryStatus` on every document
+- Custom reminder window per document (default 30 days)
+- Server-side validation with clear error messages
+- CORS configured for `http://localhost:3000`
+- Tables created automatically by Hibernate
+
+**Frontend**
+
+- Dashboard cards: Total, Valid, Renewal Soon, Expired
+- Add and edit documents with one form
+- Document type dropdown (Passport, Driving License, Aadhaar Card, PAN Card, Insurance, Visa, Certificate, Other)
+- Color-coded status badges
+- Search by name, type, holder, or reference number
+- Filter by expiry status
+- Details modal, delete confirmation, loading spinner, and success/error alerts
+- Client-side validation before submitting
+
+**Expiry statuses**
+
+| Status | Meaning |
+|---|---|
+| 🟢 `VALID` | Expiry is further away than the reminder window |
+| 🟡 `RENEWAL_SOON` | Expiry is within `reminderDaysBefore` days |
+| 🔴 `EXPIRED` | Expiry date is today or already past |
+| 🔵 `RENEWED` | Document has been marked as renewed |
+
+---
+
+## Tech Stack
 
 | Layer | Technology |
 |---|---|
-| Language | Java 25 |
-| Backend framework | Spring Boot 4.1.1 (Spring Web MVC, Spring Data JPA, Bean Validation) |
+| Backend language | Java 25 |
+| Backend framework | Spring Boot 4.1.1 (Web MVC, Data JPA, Validation) |
 | Database | MySQL |
 | Build tool | Maven (wrapper included) |
-| Developer tooling | Spring Boot DevTools, Lombok |
-| Frontend | React JS |
-| Styling | Bootstrap |
+| Backend utilities | Lombok, Spring Boot DevTools |
+| Frontend library | React 19 (Create React App) |
+| Styling | Bootstrap 5.3 + custom CSS |
+| HTTP client | Axios |
 | API testing | Postman |
 
 ---
 
-## 🏗 Architecture
+## Architecture
 
-```
+```text
 ┌──────────────────────┐        HTTP / JSON        ┌────────────────────────────────────┐
-│  React JS + Bootstrap│  ───────────────────────► │         Spring Boot API            │
+│ React JS + Bootstrap │  ───────────────────────► │         Spring Boot API            │
 │   (localhost:3000)   │  ◄─────────────────────── │         (localhost:1819)           │
-└──────────────────────┘                           │                                    │
-                                                   │  Controller → Service → Repository │
+└──────────────────────┘                           │  Controller → Service → Repository │
                                                    └──────────────────┬─────────────────┘
                                                                       │ JPA / Hibernate
                                                                       ▼
                                                            ┌────────────────────┐
-                                                           │   MySQL            │
-                                                           │   doc_renewal DB   │
+                                                           │ MySQL: doc_renewal │
                                                            └────────────────────┘
 ```
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
-```
+```text
 Document_Renewel_Reminder_API_Application/
-│
-├── document_renewel_reminder/                  # ☕ Spring Boot backend
+├── document_renewel_reminder/                 # Spring Boot backend
 │   ├── pom.xml
 │   ├── mvnw / mvnw.cmd
 │   └── src/
@@ -116,24 +131,34 @@ Document_Renewel_Reminder_API_Application/
 │       │   │   ├── repo/DocRenewelRepo.java
 │       │   │   └── model/DocumentRenewel.java
 │       │   └── resources/application.properties
-│       └── test/                               # Test classes
+│       └── test/                              # Test classes
 │
-└── doc_renewel_frontend/                       # ⚛️ React + Bootstrap frontend
+└── doc_renewel_frontend/                      # React frontend
+    ├── public/
+    ├── src/
+    │   ├── api/documentApi.js                 # Axios instance (API base URL)
+    │   ├── App.js                             # Dashboard, form, table, details modal
+    │   ├── App.css
+    │   ├── index.js
+    │   └── index.css
+    └── package.json
 ```
 
 ---
 
-## 🚀 Getting Started
-
-### Prerequisites
+## Prerequisites
 
 | Tool | Version |
 |---|---|
 | JDK | 25 |
 | MySQL | 8.x or later |
-| Node.js & npm | Latest LTS |
+| Node.js and npm | Latest LTS |
 | Maven | Optional (the `mvnw` wrapper is included) |
 | Postman | Optional, for API testing |
+
+---
+
+## Installation and Setup
 
 ### 1. Clone the repository
 
@@ -142,17 +167,52 @@ git clone https://github.com/Sai-manoj-ranga/Document_Renewel_Reminder_API_Appli
 cd Document_Renewel_Reminder_API_Application
 ```
 
-### 2. Set up the database
+### 2. Create the database
 
 ```sql
 CREATE DATABASE doc_renewal;
 ```
 
-The `document_renewal` table is created automatically on first run (`spring.jpa.hibernate.ddl-auto=update`).
+The `document_renewal` table is created automatically on first run.
 
-### 3. Configure the backend
+### 3. Run the backend
 
-Open `document_renewel_reminder/src/main/resources/application.properties` and set your own MySQL credentials:
+```bash
+cd document_renewel_reminder
+
+# Linux / macOS
+./mvnw spring-boot:run
+
+# Windows
+mvnw.cmd spring-boot:run
+```
+
+The API starts at **http://localhost:1819**. Run tests with `./mvnw test`.
+
+### 4. Run the frontend
+
+Open a new terminal:
+
+```bash
+cd doc_renewel_frontend
+npm install
+npm start
+```
+
+The app opens at **http://localhost:3000**.
+
+Other frontend scripts:
+
+```bash
+npm run build   # production build
+npm test        # run tests
+```
+
+---
+
+## Configuration
+
+### Backend: `document_renewel_reminder/src/main/resources/application.properties`
 
 ```properties
 spring.application.name=document_renewel_reminder
@@ -165,36 +225,24 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
-spring.jpa.properties.hibernate.format_sql=true
 ```
 
-### 4. Run the backend
+> Avoid committing real credentials. Spring Boot also reads the environment variables `SPRING_DATASOURCE_USERNAME` and `SPRING_DATASOURCE_PASSWORD`, which override the file.
 
-```bash
-cd document_renewel_reminder
+### Frontend: `doc_renewel_frontend/src/api/documentApi.js`
 
-# Linux / macOS
-./mvnw spring-boot:run
-
-# Windows
-mvnw.cmd spring-boot:run
+```javascript
+const apiClient = axios.create({
+  baseURL: 'http://localhost:1819', // change if your backend runs elsewhere
+  headers: { 'Content-Type': 'application/json' },
+});
 ```
 
-The API starts at **http://localhost:1819**. Thanks to Spring Boot DevTools, the app restarts automatically when you change code during development.
-
-### 5. Run the frontend
-
-```bash
-cd doc_renewel_frontend
-npm install
-npm start
-```
-
-The React app opens at **http://localhost:3000**.
+The backend allows CORS only from `http://localhost:3000`. If you change the frontend URL, update `@CrossOrigin` in `DocumentRenewelController.java`.
 
 ---
 
-## 🗄 Data Model
+## Data Model
 
 **Table:** `document_renewal`
 
@@ -211,28 +259,28 @@ The React app opens at **http://localhost:3000**.
 | `notes` | String (max 500) | ❌ | Free-form notes |
 | `renewed` | Boolean | ❌ | Default `false` |
 
-**Computed fields (read-only, included in responses):**
+**Computed, read-only fields in responses:**
 
 | Field | Description |
 |---|---|
 | `daysRemaining` | Days between today and `expiryDate` (negative if already expired) |
-| `expiryStatus` | One of `VALID`, `RENEWAL_SOON`, `EXPIRED`, `RENEWED` |
+| `expiryStatus` | `VALID`, `RENEWAL_SOON`, `EXPIRED`, or `RENEWED` |
 
 ---
 
-## 🔌 API Reference
+## API Documentation
 
 **Base URL:** `http://localhost:1819`
 
 | Method | Endpoint | Description |
 |:---:|---|---|
-| `GET` | `/getDocuments` | List all documents, sorted by expiry date (ascending) |
-| `GET` | `/getDocumentById/{id}` | Get a single document by ID |
-| `POST` | `/createDoc` | Create a new document |
-| `PUT` | `/updateDoc/{id}` | Update an existing document |
+| `GET` | `/getDocuments` | List all documents, sorted by expiry date |
+| `GET` | `/getDocumentById/{id}` | Get one document |
+| `POST` | `/createDoc` | Create a document (validated) |
+| `PUT` | `/updateDoc/{id}` | Update a document (send all fields) |
 | `DELETE` | `/deleteDoc/{id}` | Delete a document |
 
-### Sample request body (`POST /createDoc`)
+**Sample request (`POST /createDoc`)**
 
 ```json
 {
@@ -247,7 +295,7 @@ The React app opens at **http://localhost:3000**.
 }
 ```
 
-### Sample response
+**Sample response**
 
 ```json
 {
@@ -266,41 +314,13 @@ The React app opens at **http://localhost:3000**.
 }
 ```
 
-### Sample `DELETE` response
+**Sample `DELETE` response**
 
-```
+```text
 Document 1 deleted successfully
 ```
 
-> **Note:** `PUT /updateDoc/{id}` replaces all editable fields, so always send the complete document.
-
----
-
-## 🧪 Testing with Postman
-
-All endpoints were designed to be tested with [Postman](https://www.postman.com/). Follow these steps to try them out:
-
-1. Start the backend (`http://localhost:1819`).
-2. Open Postman and create a new collection called **Document Renewal Reminder**.
-3. Add the requests below.
-
-| # | Request | Method | URL | Body |
-|:---:|---|:---:|---|---|
-| 1 | Create document | `POST` | `http://localhost:1819/createDoc` | raw → JSON (see sample above) |
-| 2 | Get all documents | `GET` | `http://localhost:1819/getDocuments` | none |
-| 3 | Get document by ID | `GET` | `http://localhost:1819/getDocumentById/1` | none |
-| 4 | Update document | `PUT` | `http://localhost:1819/updateDoc/1` | raw → JSON (full document) |
-| 5 | Delete document | `DELETE` | `http://localhost:1819/deleteDoc/1` | none |
-
-**Tips**
-
-- For `POST` and `PUT`, choose **Body → raw → JSON** and add the header `Content-Type: application/json`.
-- Create a Postman **environment variable** `baseUrl = http://localhost:1819` and use `{{baseUrl}}/getDocuments` to switch environments easily.
-- To see the status logic in action, create a document with an `expiryDate` within `reminderDaysBefore` days and confirm `expiryStatus` returns `RENEWAL_SOON`.
-
----
-
-## ✅ Validation Rules
+**Validation rules (enforced on `POST /createDoc`)**
 
 | Rule | Error message |
 |---|---|
@@ -309,19 +329,71 @@ All endpoints were designed to be tested with [Postman](https://www.postman.com/
 | `holderName` must not be blank | Holder Name is required |
 | `reminderDaysBefore` must be at least 1 | Reminder must be at least 1 day |
 | `expiryDate` must be after `issueDate` | Expiry date must be after issue date |
-| Length limits on name, type, holder, reference and notes fields | Standard size validation error |
-
-Validation is enforced on `POST /createDoc`.
+| Length limits on text fields | Standard size validation error |
 
 ---
 
-## 👤 Author
+## Usage Guide
 
-**Sai Manoj Ranga**
+1. Start the backend, then the frontend.
+2. Fill in the **Add New Document** form and click **Add Document**.
+3. Use the search box and status filter to find documents.
+4. Click **View** for details, **Edit** to modify, or **Delete** to remove.
+5. Tick "This document has been renewed" while editing to mark it as renewed.
 
-[![GitHub](https://img.shields.io/badge/GitHub-Sai--manoj--ranga-181717?style=flat&logo=github&logoColor=white)](https://github.com/Sai-manoj-ranga)
+**Testing the API with Postman**
+
+| # | Request | Method | URL |
+|:---:|---|:---:|---|
+| 1 | Create document | `POST` | `http://localhost:1819/createDoc` |
+| 2 | Get all documents | `GET` | `http://localhost:1819/getDocuments` |
+| 3 | Get document by ID | `GET` | `http://localhost:1819/getDocumentById/1` |
+| 4 | Update document | `PUT` | `http://localhost:1819/updateDoc/1` |
+| 5 | Delete document | `DELETE` | `http://localhost:1819/deleteDoc/1` |
+
+For `POST` and `PUT`, choose **Body → raw → JSON**.
+
+**Screenshots**
+
+| Screen | Screenshot |
+|---|---|
+| Dashboard | <img width="932" height="434" alt="image" src="https://github.com/user-attachments/assets/2eba59e5-5906-4258-961a-dcb7c50d252f" /> |
+| Add / Edit form | <img width="920" height="339" alt="image" src="https://github.com/user-attachments/assets/21f02951-ffbd-41a7-a94d-f4948598358b" />
+<img width="918" height="335" alt="image" src="https://github.com/user-attachments/assets/2279e18b-aac3-44e3-a7da-1fa83b74e37d" /> |
+| Details modal | <img width="900" height="436" alt="image" src="https://github.com/user-attachments/assets/11f5e639-1705-468f-b8c5-064e68d86566" />
+<img width="927" height="429" alt="image" src="https://github.com/user-attachments/assets/60c3373b-b41d-4e42-8afa-a778c865a274" /> 
+<img width="925" height="272" alt="image" src="https://github.com/user-attachments/assets/fd71bf98-5299-42b8-bc24-2c13fc886e83" /> |
 
 ---
+
+## Future Improvements
+
+- Email or push notifications for upcoming expiries
+- Authentication and per-user documents
+- Move the frontend API URL to an environment variable (`REACT_APP_API_URL`)
+- Add `@Valid` to `PUT /updateDoc/{id}`
+- Global exception handler with proper 404 responses
+- Pagination and sorting in the table
+- Swagger / OpenAPI documentation
+
+---
+
+## Contributing
+
+1. Fork the repository
+2. Create a branch: `git checkout -b feature/your-feature`
+3. Commit: `git commit -m "Add your feature"`
+4. Push: `git push origin feature/your-feature`
+5. Open a Pull Request
+
+---
+
+## Author and Contact
+
+**Ranga Sai Manoj**
+
+[![GitHub](https://img.shields.io/badge/GitHub-Sai--manoj--ranga-181717?logo=github&logoColor=white)](https://github.com/Sai-manoj-ranga)
+Email: rangasaimanoj1919@gmail.com
 
 <div align="center">
 
