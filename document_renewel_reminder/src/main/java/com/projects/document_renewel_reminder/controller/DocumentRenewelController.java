@@ -18,7 +18,7 @@ import com.projects.document_renewel_reminder.service.DocumentRenewelService;
 import jakarta.validation.Valid;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://document-renewel-reminder-api.onrender.com")
 public class DocumentRenewelController {
 	
 	@Autowired
